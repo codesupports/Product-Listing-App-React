@@ -80,11 +80,19 @@
   color: #ffffff;
 
   .banner__content {
-
     margin: 0 auto;
     display: flex;
     justify-content: center;
     min-height: 320px;
+
+    span:after {
+      content: "";
+      width: 100px;
+      height: 5px;
+      display: block;
+      background-color: #1363DF;
+      margin: 20px auto 0;
+    }
 
     h1 {
       background-color: #1B252C;
@@ -106,6 +114,10 @@
       width: 70%;
       border-top: 10px solid #fff;
       border-bottom: 10px solid #fff;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      font-size: 50px;
     }
   }
 }

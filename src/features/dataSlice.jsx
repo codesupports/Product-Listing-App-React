@@ -44,9 +44,9 @@ const dataSlice = createSlice({
                 state.data.sort((a, b) => {
                     return a.price - b.price
                 })
-                state.filteredProducts.sort((a, b) => {
-                    return a.price - b.price
-                })
+                // state.filteredProducts.sort((a, b) => {
+                //     return a.price - b.price
+                // })
             }
         },
         productLength: (state, action) => {
