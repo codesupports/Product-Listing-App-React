@@ -1,33 +1,42 @@
+import heartIcon from '../assets/heart-outline.svg'
+import Loader from './Loader';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { productLength, loadMoreProducts } from '../features/dataSlice';
 
 const Card = () => {
     const dispatch = useDispatch();
-    const item = useSelector((state) => state.data.data);
+    const data = useSelector((state) => state.data.data);
     const filterItem = useSelector((state) => state.data.filteredProducts);
     const selectedCategory = useSelector((state) => state.data.selectedCategory)
+    const { displayCount, status } = useSelector((state) => state.data);
 
-    const [product, setProduct] = useState(item)
+    console.log('status', status)
+    const [product, setProduct] = useState(data)
 
     const finalData = () => {
-        if (selectedCategory == "All") {
-            setProduct(item)
+        if (selectedCategory == "All" || selectedCategory == "") {
+            setProduct(data)
+            dispatch(productLength(data.length));
         } else {
             setProduct(filterItem)
+            dispatch(productLength(filterItem.length));
         }
     }
+
+    const handleMoreProduct = () => {
+        dispatch(loadMoreProducts());
+    };
+
     useEffect(() => {
         finalData()
-    }, [item, filterItem])
-
-    // console.log('product', product)
-    // console.log('setCategory', selectedCategory)
-
+    }, [data, filterItem])
 
     return (
         <>
+            {/* {status == "loading" && <Loader />} */}
             {
-                product?.map((item, index) => {
+                product?.slice(0, displayCount).map((item, index) => {
                     return (
                         <div className='card' key={index}>
                             <div className='picture-section'>
@@ -36,11 +45,16 @@ const Card = () => {
                             <div className='des-section'>
                                 <p>{item.title}</p>
                                 <p>${item.price}</p>
+                                <img src={heartIcon} alt="" />
                             </div>
                         </div>
                     )
                 })
             }
+            {displayCount < product.length && (
+                <button onClick={handleMoreProduct} className='loadmore__btn'>Load More</button>
+            )}
+
         </>
     )
 }
