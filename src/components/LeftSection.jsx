@@ -10,9 +10,8 @@ const LeftSection = () => {
     const { productCount, selectedCategory, option } = useSelector((state) => state.data)
     const dispatch = useDispatch();
     const leftCategory = ["electronics", "jewelery", "men's clothing", "women's clothing"] // left categoery
-
     const [selectedValues, setSelectedValues] = useState("");
-    console.log('selectedValues', selectedValues)
+
     // Handle checkbox change
     const handleCheckboxChange = (event) => {
         const value = event.target.value;

@@ -21,7 +21,6 @@ const initialState = {
     productCount: "",
     displayCount: 10,
     typeOfSort: "",
-    option: ""
 };
 
 // Create the slice
@@ -47,22 +46,19 @@ const dataSlice = createSlice({
         },
         setSort: (state, action) => {
             state.typeOfSort = action.payload;
-            const { key, order } = action.payload;
-            state.typeOfSort = order;
-
             state.data = state.data.sort((a, b) => {
-                if (order === 'lowToHigh') {
-                    return a[key] > b[key] ? 1 : -1;
+                if (state.typeOfSort === 'lowToHigh') {
+                    return a.price > b.price ? 1 : -1;
                 } else {
-                    return a[key] < b[key] ? 1 : -1;
+                    return a.price < b.price ? 1 : -1;
                 }
             });
 
             state.filteredProducts = state.filteredProducts?.sort((a, b) => {
-                if (order === 'lowToHigh') {
-                    return a[key] > b[key] ? 1 : -1;
+                if (state.typeOfSort === 'lowToHigh') {
+                    return a.price > b.price ? 1 : -1;
                 } else {
-                    return a[key] < b[key] ? 1 : -1;
+                    return a.price < b.price ? 1 : -1;
                 }
             });
         },
@@ -74,7 +70,6 @@ const dataSlice = createSlice({
         },
         clearAllFilter: (state, action) => {
             state.selectedCategory = []
-            // state.option = action.payload
         }
 
     },
