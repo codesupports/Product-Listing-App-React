@@ -85,7 +85,7 @@ const LeftSection = () => {
                 </ul>
 
             </div>
-            <button className='d-small bottom-result'>See {productCount} Results</button>
+            <button className='d-small bottom-result' onClick={closeMenu}>See {productCount} Results</button>
         </section>
     )
 }

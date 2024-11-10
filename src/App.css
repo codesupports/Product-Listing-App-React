@@ -112,7 +112,8 @@
     }
 
     .banner__img {
-      background-color: #a7ad7c;
+      background: url(./assets/banner.png) center top no-repeat;
+      background-size: cover;
       width: 70%;
       border-top: 10px solid #fff;
       border-bottom: 10px solid #fff;

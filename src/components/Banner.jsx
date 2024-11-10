@@ -4,7 +4,7 @@ const Banner = () => {
         <section className="app__banner">
             <div className="banner__content">
                 <h1><span>Men’s Outerwear</span></h1>
-                <div className='banner__img'>Banner Aera </div>
+                <div className='banner__img' />
             </div>
         </section>
     )
