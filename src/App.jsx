@@ -84,6 +84,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      <div className='overlay' />
     </>
   )
 }

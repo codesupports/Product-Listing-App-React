@@ -20,7 +20,8 @@ const initialState = {
     totalCategory: [],
     productCount: "",
     displayCount: 10,
-    typeOfSort: ""
+    typeOfSort: "",
+    option: ""
 };
 
 // Create the slice
@@ -33,9 +34,12 @@ const dataSlice = createSlice({
             state.selectedCategory = action.payload;
             state.totalCategory.push(state.selectedCategory)
             state.filteredProducts = state.data.filter((product) =>
-                product.category === state.selectedCategory[state.selectedCategory.length - 1]
+                // product.category === state.selectedCategory[state.selectedCategory.length - 1]
+                product.category === state.selectedCategory[0]
+                || product.category === state.selectedCategory[1]
+                || product.category === state.selectedCategory[2]
+                || product.category === state.selectedCategory[3]
             )
-
             // state.data = state.filteredProducts
         },
         setAllProducts: (state, action) => {
@@ -68,6 +72,10 @@ const dataSlice = createSlice({
         productLength: (state, action) => {
             state.productCount = action.payload
         },
+        clearAllFilter: (state, action) => {
+            state.selectedCategory = []
+            // state.option = action.payload
+        }
 
     },
     extraReducers: (builder) => {
@@ -87,5 +95,5 @@ const dataSlice = createSlice({
     },
 });
 
-export const { setCategory, setAllProducts, setSort, productLength, loadMoreProducts } = dataSlice.actions;
+export const { setCategory, setAllProducts, setSort, productLength, loadMoreProducts, clearAllFilter } = dataSlice.actions;
 export default dataSlice.reducer;

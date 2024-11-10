@@ -152,6 +152,13 @@ footer {
             &:hover {
               text-decoration: underline;
             }
+
+            img {
+              width: 30px;
+              max-width: fit-content;
+            }
+
+
           }
 
           &:first-child {
@@ -351,7 +358,13 @@ main {
 
 
 
-
+.overlay {
+  background-color: #00000090;
+  position: fixed;
+  z-index: 1;
+  inset: 0;
+  display: none;
+}
 
 /* Main Section css  end*/
 
@@ -433,10 +446,16 @@ main {
 
 @media (max-width:767px) {
   body.toggle {
+    overflow: hidden;
+
     main {
       .left-section {
-        right: -46px;
+        right: -62px;
       }
+    }
+
+    .overlay {
+      display: block;
     }
   }
 
@@ -508,6 +527,17 @@ main {
         display: none;
       }
 
+      .clear-all {
+        font-size: 14px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+
+        a {
+          color: #333;
+        }
+      }
+
       h4 {
         padding: 10px 20px;
         background-color: #efefef;
@@ -526,6 +556,17 @@ main {
 
       .filter__category {
         padding: 20px;
+
+
+      }
+
+      .bottom-result {
+        background-color: #1363DF;
+        border: 0px;
+        color: #fff;
+        padding: 10px 30px;
+        border-radius: 10px;
+        margin: 25px auto;
       }
     }
 
@@ -590,6 +631,10 @@ main {
       .card-section {
         flex-wrap: wrap;
 
+        .loadmore__btn {
+          left: calc(70%);
+        }
+
         .card {
           width: calc(100% / 2 - 30px);
 
@@ -638,9 +683,19 @@ main {
         padding: 0 25px;
 
         ul {
+          width: 100%;
+
           li {
             &:first-child {
               padding-top: 30px;
+            }
+
+            ul {
+              li {
+                &:first-child {
+                  padding-top: 0;
+                }
+              }
             }
           }
         }
@@ -650,7 +705,7 @@ main {
     }
 
     .footer__copyright {
-      max-width: 60%;
+      max-width: 82%;
       flex-direction: column;
       text-align: center;
 

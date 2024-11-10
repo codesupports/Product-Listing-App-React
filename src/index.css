@@ -78,3 +78,23 @@ li {
 #__next {
   isolation: isolate;
 }
+
+@media(min-width:768px) {
+  .d-large {
+    display: block;
+  }
+
+  .d-small {
+    display: none;
+  }
+}
+
+@media(max-width:767px) {
+  .d-large {
+    display: none;
+  }
+
+  .d-small {
+    display: block;
+  }
+}

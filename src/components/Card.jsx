@@ -11,7 +11,6 @@ const Card = () => {
     const selectedCategory = useSelector((state) => state.data.selectedCategory)
     const { displayCount, status } = useSelector((state) => state.data);
 
-    console.log('status', status)
     const [product, setProduct] = useState(data)
 
     const finalData = () => {

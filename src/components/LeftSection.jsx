@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setCategory, setAllProducts } from '../features/dataSlice';
+import { setCategory, setAllProducts, clearAllFilter } from '../features/dataSlice';
 import { useEffect, useState } from 'react';
 
 const LeftSection = () => {
@@ -7,28 +7,37 @@ const LeftSection = () => {
     const bodyClass = document.querySelector('body');
     const closeMenu = () => { bodyClass.classList.remove('toggle') }
 
-    const { data } = useSelector((state) => state.data);
+    const { productCount, selectedCategory, option } = useSelector((state) => state.data)
     const dispatch = useDispatch();
     const leftCategory = ["electronics", "jewelery", "men's clothing", "women's clothing"] // left categoery
 
     const [selectedValues, setSelectedValues] = useState("");
-
+    console.log('selectedValues', selectedValues)
     // Handle checkbox change
     const handleCheckboxChange = (event) => {
         const value = event.target.value;
         if (event.target.checked) {
-            // dispatch(setCategory(value));
+
             setSelectedValues((prevValues) => [...prevValues, value])
-        } else {
-            // dispatch(setCategory((prevValues) =>
-            //     prevValues.filter((val) => val !== value)
-            // ))
+        }
+        // else if (selectedCategory.length == 0) {
+        //     setSelectedValues("")
+        // }
+        else {
             setSelectedValues((prevValues) => prevValues.filter((val) => val !== value));
         }
     };
     useEffect(() => {
         dispatch(setCategory(selectedValues))
     }, [selectedValues])
+
+    // const clearAll = () => {
+    //     dispatch(clearAllFilter(false))
+    // }
+    useEffect(() => {
+        dispatch(setAllProducts());
+    }, [dispatch]);
+
     // console.log('selectedValues aaye', selectedValues)
     // const catagoryData = []
     // const getCat = data.filter((catag, index) => {
@@ -44,9 +53,6 @@ const LeftSection = () => {
     //     dispatch(setCategory(cat));
     // };
 
-    useEffect(() => {
-        dispatch(setAllProducts());
-    }, [dispatch]);
 
     // const fdata = data.filter((item) => {
     //     return item.category == "electronics" || item.category == "women's clothing"
@@ -64,6 +70,9 @@ const LeftSection = () => {
                 </nav>
                 <h4>Filter <span className='close' onClick={closeMenu}>&#x2715;</span></h4>
                 <div className="filter__category">
+                    <div className="clear-all d-small">
+                        <a href="#null" >Clear All</a>
+                    </div>
                     <p>Categories</p>
                     <ul>
                         {
@@ -75,6 +84,7 @@ const LeftSection = () => {
                                             name={`item-${index}`}
                                             id={`item-${index}`}
                                             value={item}
+                                            // checked={option}
                                             // onChange={() => handleCategoryChange(item)}
                                             onChange={handleCheckboxChange}
 
@@ -86,7 +96,9 @@ const LeftSection = () => {
                         }
 
                     </ul>
+
                 </div>
+                <button className='d-small bottom-result'>See {productCount} Results</button>
             </section>
         </>
     )
