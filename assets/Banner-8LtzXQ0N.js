@@ -1,1 +1,0 @@
-import{j as e}from"./index-BxbXVtMp.js";const s=()=>e.jsx("section",{className:"app__banner",children:e.jsxs("div",{className:"banner__content",children:[e.jsx("h1",{children:e.jsx("span",{children:"Men’s Outerwear"})}),e.jsx("div",{className:"banner__img",children:"Banner Aera "})]})});export{s as default};
