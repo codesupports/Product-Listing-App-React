@@ -1,5 +1,4 @@
 import heartIcon from '../assets/heart-outline.svg'
-import Loader from './Loader';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { productLength, loadMoreProducts } from '../features/dataSlice';
@@ -12,7 +11,6 @@ const Card = () => {
     const { displayCount, status } = useSelector((state) => state.data);
 
     const [product, setProduct] = useState(data)
-
     const finalData = () => {
         if (selectedCategory == "All" || selectedCategory == "") {
             setProduct(data)
@@ -33,7 +31,6 @@ const Card = () => {
 
     return (
         <>
-            {/* {status == "loading" && <Loader />} */}
             {
                 product?.slice(0, displayCount).map((item, index) => {
                     return (
@@ -53,7 +50,6 @@ const Card = () => {
             {displayCount < product.length && (
                 <button onClick={handleMoreProduct} className='loadmore__btn'>Load More</button>
             )}
-
         </>
     )
 }

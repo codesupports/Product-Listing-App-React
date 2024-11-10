@@ -293,6 +293,12 @@ main {
     display: flex;
     justify-content: space-between;
     padding: 0 0 20px;
+
+    input {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 5px;
+    }
   }
 
   .mobile-row {
@@ -326,22 +332,27 @@ main {
     }
 
     .card {
-      /* width: calc(100% / 3); */
-      /* background-color: #dfdfdf; */
       width: calc(33.33% - 30px);
       border: 1px solid #f6f6f6;
       margin: 0 15px 10px 15px;
+      background-color: #ffffff;
 
       .picture-section {
-        height: 382px;
+        height: 292px;
         display: flex;
         justify-content: center;
+        align-items: center;
       }
 
       img {
-        /* width: 90%; */
-        /* height: auto; */
+        max-width: 90%;
+        max-height: 80%;
         object-fit: scale-down;
+        transition: all 200ms ease-in-out;
+
+        &:hover {
+          transform: scale(1.1);
+        }
       }
     }
 
@@ -625,6 +636,10 @@ main {
               width: 14px;
             }
           }
+        }
+
+        .result-aera {
+          padding-bottom: 20px;
         }
       }
 

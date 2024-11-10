@@ -1,46 +1,34 @@
 import React, { useEffect, useState, Suspense } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css'
 import filterIcon from './assets/sliders.svg'
-import Header from './components/Header'
-import Banner from './components/Banner'
-import Footer from './components/Footer'
-
-import LeftSection from './components/LeftSection';
-const Product = React.lazy(() => import('./components/Card'))
-
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchData, setSort } from './features/dataSlice';
 import Loader from './components/Loader';
+import useToggleClass from './customHooks/useToggleClass';
+
+import { fetchData, setSort } from './features/dataSlice';
+
+const Header = React.lazy(() => import('./components/Header'))
+const Product = React.lazy(() => import('./components/Card'))
+const Footer = React.lazy(() => import('./components/Footer'))
+const Banner = React.lazy(() => import('./components/Banner'))
+const LeftSection = React.lazy(() => import('./components/LeftSection'))
 
 function App() {
-  const bodyClass = document.querySelector('body');
-  const toggleMenu = () => {
-    bodyClass.classList.add('toggle')
-  }
-
+  const [toggleMenu] = useToggleClass() // CustomHooks
+  const [selectedOption, setSelectedOption] = useState('');
   const dispatch = useDispatch();
-  const { productCount } = useSelector((state) => state.data)
+  const { productCount, data } = useSelector((state) => state.data)
+  const [inputData, setInputData] = useState()
 
-  const products = useSelector((state) => state.data);
-  // let count = "";
-  // if (products.filteredProducts == undefined) {
-  //   count = products.data.length
-  // } else {
-  //   count = products.filteredProducts.length
-  // }
-
-  const handleSortChange = (val) => {
-    dispatch(setSort(val))
-  };
-  const handleSortChangeMobile = (val) => {
-    console.log(val)
-    dispatch(setSort(val))
+  const handleSortChange = (event) => {
+    const value = event.target.value;
+    dispatch(setSort(value))
+    setSelectedOption(value)
   };
 
   useEffect(() => {
     dispatch(fetchData());
   }, [setSort]);
-
 
   return (
     <>
@@ -51,13 +39,13 @@ function App() {
           <LeftSection />
           <section className="right-section">
             <div className="resul-row">
+
               <div>{productCount} Results</div>
               <div>
-                <select onChange={(e) => handleSortChange(e.target.value)}>
-                  <option value="Sory by Price" selected disabled>Sory by Price</option>
+                <select value={selectedOption} onChange={handleSortChange}>
+                  <option value="Sory by Price" >Sory by Price</option>
                   <option value="lowToHigh">Ascending</option>
                   <option value="HighToLow">Decending</option>
-
                 </select>
               </div>
             </div>
@@ -71,13 +59,13 @@ function App() {
               </nav>
               <div className='filter-aera'>
                 <a href='#null' onClick={toggleMenu}><img src={filterIcon} alt='' />Filter Results</a>
-                <a href='#null' onClick={() => handleSortChangeMobile("lowToHigh")}> &#8645; Sort Products</a>
+                <a href='#null' onClick={() => handleSortChange("lowToHigh")}> &#8645; Sort Products</a>
               </div>
               <div className='result-aera'>{productCount} Results</div>
             </div>
             <div className="card-section">
               <Suspense fallback={<Loader />}>
-                <Product />
+                <Product inputData={inputData} />
               </Suspense>
             </div>
           </section>

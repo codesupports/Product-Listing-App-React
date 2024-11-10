@@ -1,6 +1,5 @@
-// src/features/dataSlice.js
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchData = createAsyncThunk('data/fetchData', async () => {
     const response = await fetch(`https://fakestoreapi.com/products/`);
@@ -27,7 +26,6 @@ const initialState = {
 const dataSlice = createSlice({
     name: 'data',
     initialState,
-
     reducers: {
         setCategory: (state, action) => {
             state.selectedCategory = action.payload;
@@ -67,9 +65,6 @@ const dataSlice = createSlice({
         },
         productLength: (state, action) => {
             state.productCount = action.payload
-        },
-        clearAllFilter: (state, action) => {
-            state.selectedCategory = []
         }
 
     },
@@ -90,5 +85,5 @@ const dataSlice = createSlice({
     },
 });
 
-export const { setCategory, setAllProducts, setSort, productLength, loadMoreProducts, clearAllFilter } = dataSlice.actions;
+export const { setCategory, setAllProducts, setSort, productLength, loadMoreProducts } = dataSlice.actions;
 export default dataSlice.reducer;
