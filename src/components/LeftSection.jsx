@@ -86,6 +86,9 @@ const LeftSection = () => {
 
             </div>
             <button className='d-small bottom-result' onClick={closeMenu}>See {productCount} Results</button>
+
+
+
         </section>
     )
 }

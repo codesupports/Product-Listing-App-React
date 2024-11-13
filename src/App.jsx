@@ -37,15 +37,15 @@ function App() {
         <Banner />
         <main>
           <LeftSection />
-          <section className="right-section">
+          <section className="right-section" aria-labelledby='product-list-count'>
             <div className="resul-row">
 
-              <div>{productCount} Results</div>
+              <div id='product-list-count'>{productCount} Results</div>
               <div>
-                <select value={selectedOption} onChange={handleSortChange}>
+                <select value={selectedOption} onChange={handleSortChange} aria-label="Product shorting by Price in">
                   <option value="Sory by Price" >Sory by Price</option>
-                  <option value="lowToHigh">Ascending</option>
-                  <option value="HighToLow">Decending</option>
+                  <option value="lowToHigh" aria-label='Ascending order'>Ascending</option>
+                  <option value="HighToLow" aria-label='Decending order'>Decending</option>
                 </select>
               </div>
             </div>

@@ -34,21 +34,21 @@ const Card = () => {
             {
                 product?.slice(0, displayCount).map((item, index) => {
                     return (
-                        <div className='card' key={index}>
+                        <article className='card' key={index} role="listitem" aria-labelledby="product1-name" tabIndex={0}>
                             <div className='picture-section'>
-                                <img src={`${item.image}`} alt='' />
+                                <img src={`${item.image}`} alt={item.title} />
                             </div>
                             <div className='des-section'>
-                                <p>{item.title}</p>
+                                <p id="product1-name">{item.title}</p>
                                 <p>${item.price}</p>
-                                <img src={heartIcon} alt="" />
+                                <img src={heartIcon} alt="Wishlist item" />
                             </div>
-                        </div>
+                        </article >
                     )
                 })
             }
             {displayCount < product.length && (
-                <button onClick={handleMoreProduct} className='loadmore__btn'>Load More</button>
+                <button onClick={handleMoreProduct} className='loadmore__btn' aria-label='Load more products'>Load More</button>
             )}
         </>
     )
