@@ -18,10 +18,10 @@ const Header = () => {
                 <nav className="app__nav" role='navigation' aria-label='Main Navigation'>
                     <ul>
                         <li><a href="#" className='active' accessKey='H' aria-label='Go to Home'>Home</a></li>
-                        <li><a href="#" aria-label='Women'>Women</a></li>
-                        <li><a href="#" aria-label='Men'>Men</a></li>
-                        <li><a href="#" aria-label='Women'>Smart Gear</a></li>
-                        <li><a href="#" aria-label='Accessories'>Accessories</a></li>
+                        <li><a href="#" aria-label='Women' accessKey='W'>Women</a></li>
+                        <li><a href="#" aria-label='Men' accessKey='M'>Men</a></li>
+                        <li><a href="#" aria-label='Women' accessKey='S'>Smart Gear</a></li>
+                        <li><a href="#" aria-label='Accessories' accessKey='A'>Accessories</a></li>
                     </ul>
                 </nav>
                 <div className="app__icon" role="Button Link" aria-label='Count of Items' tabIndex={"0"}>

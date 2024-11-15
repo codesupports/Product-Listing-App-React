@@ -34,12 +34,12 @@ const Card = () => {
             {
                 product?.slice(0, displayCount).map((item, index) => {
                     return (
-                        <article className='card' key={index} role="listitem" aria-labelledby="product1-name" tabIndex={0}>
+                        <article className='card' key={index} role="listitem" aria-labelledby={`product-name-${item.id}`} tabIndex={0}>
                             <div className='picture-section'>
                                 <img src={`${item.image}`} alt={item.title} />
                             </div>
                             <div className='des-section'>
-                                <p id="product1-name">{item.title}</p>
+                                <p id={`product-name-${item.id}`}>{item.title}</p>
                                 <p>${item.price}</p>
                                 <img src={heartIcon} alt="Wishlist item" />
                             </div>
